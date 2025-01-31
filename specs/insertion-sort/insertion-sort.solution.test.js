@@ -10,7 +10,7 @@
 */
 function insertionSort(nums) {
   for (let i = 1; i < nums.length; i++) {
-    let numberToInsert = nums[i]; // the numberToInsert number we're looking to insert
+    let numberToInsert = nums[i];
     let j; // the inner counter
 
     // loop from the right to the left
@@ -18,7 +18,7 @@ function insertionSort(nums) {
       // move numbers to the right until we find where to insert
       nums[j + 1] = nums[j];
     }
-
+    // j always ends up equaling -1 here is the important part to remember
     // do the insertion
     nums[j + 1] = numberToInsert;
   }
@@ -29,6 +29,11 @@ function insertionSort(nums) {
 // do not modify the below code
 test("insertion sort", function () {
   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
+  [5, 10, 3, 8, 2, 6, 4, 7, 9, 1];
+  [5, 10, 10, 8, 2, 6, 4, 7, 9, 1]; // inner loop, holding 3
+  [5, 5, 10, 8, 2, 6, 4, 7, 9, 1]; // inner loop, holding 3
+  [3, 5, 10, 8, 2, 6, 4, 7, 9, 1]; // ending inner loop
+
   insertionSort(nums);
   expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 });

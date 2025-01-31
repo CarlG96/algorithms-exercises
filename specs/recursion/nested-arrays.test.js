@@ -10,10 +10,20 @@
  */
 
 function nestedAdd(array) {
-  // write code here
+  // base case
+  if (array.length <= 0) {
+    return 0;
+  }
+  const firstElement = array.shift();
+  if (typeof firstElement === "number") {
+    return firstElement + nestedAdd(array);
+  }
+  // actual comparison
+  return nestedAdd(firstElement) + nestedAdd(array);
 }
 
-test.skip("nested arrays addition", () => {
+test("nested arrays addition", () => {
+  expect(nestedAdd([])).toEqual(0);
   expect(nestedAdd([1, 2, 3])).toEqual(6);
   expect(nestedAdd([1, [2], 3])).toEqual(6);
   expect(nestedAdd([[[[[[[[[5]]]]]]]]])).toEqual(5);
